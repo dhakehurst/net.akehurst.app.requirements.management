@@ -1,9 +1,0 @@
-
-
-dependencies {
-	compile project(':net.akehurst.requirements.management.computational.requirementsManagement')
-	
-	compile project(':net.akehurst.requirements.management.engineering.user2Gui')
-
-	compile project(':net.akehurst.requirements.management.technology.gui.javafx')
-}

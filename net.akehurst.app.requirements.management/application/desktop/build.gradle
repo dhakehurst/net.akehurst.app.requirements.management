@@ -1,0 +1,9 @@
+
+
+dependencies {
+	compile project(':net.akehurst.app.requirements.management.computational.requirementsManagement')
+	
+	compile project(':net.akehurst.app.requirements.management.engineering.user2Gui')
+
+	compile 'net.akehurst.application.framework:net.akehurst.application.framework.technology.gui.javafx:+'
+}
