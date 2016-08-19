@@ -16,11 +16,12 @@
 
 
 dependencies {
-	compile project(':net.akehurst.app.requirements.management.computational.requirementsManagement')
+	compile project(":${rootProject.name}.computational.requirementsManagement")
 
-	compile project(':net.akehurst.app.requirements.management.engineering.user2Gui')
+	compile project(":${rootProject.name}.engineering.user2Gui")
 	
-	compile 'net.akehurst.application.framework:net.akehurst.application.framework.engineering.authenticator2Gui:+'
-
-	compile 'net.akehurst.application.framework:net.akehurst.application.framework.technology.gui.vertx:+'
+	compile "${af}.engineering.channel.authenticatorGui:${afVersion}"
+	compile "${af}.technology.gui.vertx:${afVersion}"
+	
+		compile "${af}.technology.persistence.jdo:${afVersion}"
 }

@@ -18,8 +18,11 @@
 dependencies {
 	compile project(':net.akehurst.app.requirements.management.computational.userInterface')
 	
-	compile 'net.akehurst.application.framework:net.akehurst.application.framework.technology.guiInterface:+'
-	compile 'net.akehurst.application.framework:net.akehurst.application.framework.technology.authentication:+'
-	compile 'net.akehurst.application.framework:net.akehurst.application.framework.technology.commsInterface:+'
+	compile "${af}.engineering.common:${afVersion}"
+
+	compile "${af}.technology.interfaceGui:${afVersion}"
+	compile "${af}.technology.authentication:${afVersion}"
+	compile "${af}.technology.interfaceComms:${afVersion}"
+	compile "${af}.technology.gui.common:${afVersion}"
 
 }

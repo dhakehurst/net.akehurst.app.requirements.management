@@ -15,6 +15,7 @@
  */
 
 dependencies {
-	compile 'net.akehurst.application.framework:net.akehurst.application.framework.computational.userInterface:+'
+	compile "${af}.computational.interfaceUser:+"
 
+	compile project(":${rootProject.name}.computational.requirementsInterface")
 }

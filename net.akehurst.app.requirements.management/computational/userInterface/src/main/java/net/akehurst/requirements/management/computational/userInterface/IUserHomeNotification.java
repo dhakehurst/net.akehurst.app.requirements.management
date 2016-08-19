@@ -15,6 +15,13 @@
  */
 package net.akehurst.requirements.management.computational.userInterface;
 
+import java.util.List;
+
+import net.akehurst.app.requirements.management.computational.requirementsInterface.Project;
+import net.akehurst.application.framework.common.UserSession;
+
 public interface IUserHomeNotification {
+
+	void notifyProjectList(UserSession session, List<Project> projectList);
 
 }

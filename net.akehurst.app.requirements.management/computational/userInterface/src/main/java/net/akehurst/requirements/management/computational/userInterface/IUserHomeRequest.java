@@ -15,6 +15,12 @@
  */
 package net.akehurst.requirements.management.computational.userInterface;
 
+import net.akehurst.application.framework.common.UserSession;
+
 public interface IUserHomeRequest {
-	
+
+	void requestStartHome(UserSession session);
+
+	void requestNewProject();
+
 }

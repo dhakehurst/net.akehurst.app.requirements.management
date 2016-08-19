@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.akehurst.requirements.management.computational.userInterface;
+package net.akehurst.requirements.management.application.web;
 
-import net.akehurst.application.framework.computational.userInterface.authentication.UserSession;
+import net.akehurst.application.framework.realisation.ApplicationFramework;
 
-public interface IUserWelcomeNotification {
+public class RequirementsManagementMain {
 
-	void notifyWelcomeMessage(UserSession session, String message);
+	public static void main(final String[] args) {
+		ApplicationFramework.start(RequirementsManagementApplication.class, args);
+	}
 
-	
 }

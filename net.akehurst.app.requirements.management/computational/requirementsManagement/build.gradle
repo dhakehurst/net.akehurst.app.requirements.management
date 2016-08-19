@@ -18,6 +18,6 @@
 dependencies {
 	compile project(':net.akehurst.app.requirements.management.computational.userInterface')
 
-	compile 'net.akehurst.application.framework:net.akehurst.application.framework.computational.authenticatorInterface:+'
+	compile "${af}.computational.interfaceAuthenticator:+"
 
 }
