@@ -19,7 +19,7 @@ import java.lang.reflect.Method;
 
 import org.junit.Test;
 
-import net.akehurst.application.framework.common.UserSession;
+import net.akehurst.application.framework.common.interfaceUser.UserSession;
 import net.akehurst.application.framework.components.test.MockComponentPort;
 import net.akehurst.application.framework.computational.interfaceAuthenticator.ICAuthenticatorRequest;
 
@@ -41,9 +41,9 @@ public class test_RequirementsManager {
 
 		final RequirementsManager sut = new RequirementsManager("sut");
 		final MockComponentPort mockGui = new MockComponentPort();
-		mockGui.connect(sut.portUserInterface());
+		mockGui.connect(sut.portUser());
 
-		final UserSession session = new UserSession("", null);
+		final UserSession session = new UserSession("", null, null);
 		// sut.portUserInterface().in(IUserWelcomeRequest.class).requestStart(session);
 
 		// mockGui.expect(IUserWelcomeNotification.class, "notifyWelcomeMessage");
@@ -54,9 +54,9 @@ public class test_RequirementsManager {
 	public void requestLogin() {
 		final RequirementsManager sut = new RequirementsManager("sut");
 		final MockComponentPort mockGui = new MockComponentPort();
-		mockGui.connect(sut.portUserInterface());
+		mockGui.connect(sut.portUser());
 
-		final UserSession session = new UserSession("", null);
+		final UserSession session = new UserSession("", null, null);
 		final String username = "test";
 		final String password = "test";
 		// sut.portUserInterface().in(IUserAuthenticationRequest.class).requestLogin(session, username, password);

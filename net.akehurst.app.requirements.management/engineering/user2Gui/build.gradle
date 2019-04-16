@@ -21,8 +21,8 @@ dependencies {
 	compile "${af}.engineering.common:${afVersion}"
 
 	compile "${af}.technology.interfaceGui:${afVersion}"
-	compile "${af}.technology.authentication:${afVersion}"
 	compile "${af}.technology.interfaceComms:${afVersion}"
 	compile "${af}.technology.gui.common:${afVersion}"
 
+	compile 'org.webjars:font-awesome:4.6.3'
 }

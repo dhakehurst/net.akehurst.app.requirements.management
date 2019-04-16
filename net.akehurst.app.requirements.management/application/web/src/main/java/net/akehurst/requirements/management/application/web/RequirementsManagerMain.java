@@ -17,10 +17,10 @@ package net.akehurst.requirements.management.application.web;
 
 import net.akehurst.application.framework.realisation.ApplicationFramework;
 
-public class RequirementsManagementMain {
+public class RequirementsManagerMain {
 
 	public static void main(final String[] args) {
-		ApplicationFramework.start(RequirementsManagementApplication.class, args);
+		ApplicationFramework.start(RequirementsManagerApplication.class, args);
 	}
 
 }

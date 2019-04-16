@@ -15,12 +15,18 @@
  */
 package net.akehurst.requirements.management.computational.userInterface;
 
-import net.akehurst.application.framework.common.UserSession;
+import net.akehurst.app.requirements.management.computational.requirementsInterface.Project;
+import net.akehurst.app.requirements.management.computational.requirementsInterface.ProjectIdentity;
+import net.akehurst.application.framework.common.interfaceUser.UserSession;
 
 public interface IUserHomeRequest {
 
 	void requestStartHome(UserSession session);
 
-	void requestNewProject();
+	void requestCreateProject(UserSession session, ProjectIdentity projectId);
+
+	void requestUpdateProject(UserSession session, ProjectIdentity projectId, Project project);
+
+	void requestDeleteProject(UserSession session, ProjectIdentity projectId);
 
 }

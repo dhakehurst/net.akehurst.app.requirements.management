@@ -14,7 +14,7 @@
  * limitations under the License.
  */
  
-rootProject.name = 'net.akehurst.app.requirements.management'
+rootProject.name = file('.').name
  
 fileTree('.') {
   include '**/build.gradle'

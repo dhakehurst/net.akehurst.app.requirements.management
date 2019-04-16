@@ -16,12 +16,25 @@
 
 
 dependencies {
+	// --- services
+	compile "${af}.service.configuration.file:${afVersion}"
+
+	// --- computational
 	compile project(":${rootProject.name}.computational.requirementsManagement")
 
+	// --- engineering
 	compile project(":${rootProject.name}.engineering.user2Gui")
-	
-	compile "${af}.engineering.channel.authenticatorGui:${afVersion}"
+	compile project(":${rootProject.name}.engineering.channel.user2gui.web")
+	compile project(":${rootProject.name}.engineering.channel.dataStore")
+	compile "${af}.engineering.channel.authenticator:${afVersion}"
+
+	// --- technology
 	compile "${af}.technology.gui.vertx:${afVersion}"
-	
-		compile "${af}.technology.persistence.jdo:${afVersion}"
+	compile "${af}.technology.authentication.any:${afVersion}"
+	compile "${af}.technology.persistence.jdo:${afVersion}"
+	  //derby
+	  //runtime "org.datanucleus:datanucleus-rdbms:${jdoVersion}"
+	  //postgres
+	  runtime "org.datanucleus:datanucleus-rdbms:${jdoVersion}"
+	  runtime 'org.postgresql:postgresql:42.0.0'
 }

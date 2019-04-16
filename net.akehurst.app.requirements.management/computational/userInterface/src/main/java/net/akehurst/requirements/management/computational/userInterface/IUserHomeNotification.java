@@ -18,10 +18,19 @@ package net.akehurst.requirements.management.computational.userInterface;
 import java.util.List;
 
 import net.akehurst.app.requirements.management.computational.requirementsInterface.Project;
-import net.akehurst.application.framework.common.UserSession;
+import net.akehurst.app.requirements.management.computational.requirementsInterface.ProjectIdentity;
+import net.akehurst.application.framework.common.interfaceUser.UserSession;
 
 public interface IUserHomeNotification {
 
+	void notifyProjectCreated(UserSession session, Project project);
+
 	void notifyProjectList(UserSession session, List<Project> projectList);
+
+	void notifyProject(UserSession session, Project project);
+
+	void notifyProjectUpdated(UserSession session, Project project);
+
+	void notifyProjectDeleted(UserSession session, ProjectIdentity projectId);
 
 }

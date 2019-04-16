@@ -16,9 +16,5 @@
 
 
 dependencies {
-	compile project(':net.akehurst.app.requirements.management.computational.userInterface')
-
-	compile "${af}.computational.authentication:+"
-	compile "${af}.computational.interfaceAuthenticator:+"
-
+	compile "${af}.engineering.gui.common:${afVersion}"
 }

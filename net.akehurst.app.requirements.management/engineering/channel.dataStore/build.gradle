@@ -19,6 +19,33 @@ dependencies {
 	compile project(':net.akehurst.app.requirements.management.computational.requirementsInterface')
 
 	compile "${af}.technology.interfacePersistence:${afVersion}"
-	compile 'org.datanucleus:javax.jdo:+'
+	compile "org.datanucleus:javax.jdo:${javaxJdoVersion}"
 	
+	compile "net.akehurst.transform:net.akehurst.transform.binary:1.0.1"
+	
+	//default connection driver & url require these: add others to classpath if needed	
+	runtime "org.datanucleus:datanucleus-rdbms:${jdoVersion}"
+	runtime 'org.apache.derby:derby:10.13.1.1'
+	
+	// to bring in the jdo enhancer to the class path
+	compile "${af}.technology.persistence.jdo:${afVersion}"
 }
+
+task jdoEnhance << {
+	ant.taskdef(
+	   name: 'enhancer',
+	   classname: 'org.datanucleus.enhancer.EnhancerTask',
+	   classpath: configurations.compile.asPath
+	) 
+	ant.enhancer( dir: sourceSets.main.output.classesDir, verbose: 'true', api: "JDO") {
+		classpath {
+			pathelement(location: sourceSets.main.output.classesDir)
+			pathelement(path: configurations.runtime.asPath)
+		}
+		fileset(dir: sourceSets.main.output.classesDir) {
+			include(name: '**/data/*.class')
+		}
+	}
+}
+
+classes.dependsOn jdoEnhance

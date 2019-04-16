@@ -39,7 +39,7 @@ public class RequirementsManagerApplication extends AbstractApplication {
 
 	@Override
 	public void afConnectParts() {
-		this.requirementsManager.portUserInterface().connect(this.userToGui.portUserInterface());
+		this.requirementsManager.portUser().connect(this.userToGui.portUserInterface());
 		this.userToGui.portGui().connect(this.gui.portGui());
 	}
 

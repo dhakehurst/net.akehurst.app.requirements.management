@@ -1,16 +1,26 @@
 package net.akehurst.app.requirements.management.engineering.channel.dataStore.jdo;
 
-import java.util.List;
-
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
-public class JdoProject {
+public class JdoTopChapter {
 
-	@PrimaryKey
 	@Persistent
+	// @PrimaryKey
+	public JdoProject getOwner() {
+		return this.owner;
+	}
+
+	public void setOwner(final JdoProject value) {
+		this.owner = value;
+	}
+
+	private JdoProject owner;
+
+	@Persistent
+	@PrimaryKey
 	public String getIdentity() {
 		return this.identity;
 	}
@@ -19,7 +29,7 @@ public class JdoProject {
 		this.identity = value;
 	}
 
-	private String identity;
+	String identity;
 
 	@Persistent
 	public String getName() {
@@ -37,21 +47,10 @@ public class JdoProject {
 		return this.description;
 	}
 
-	public void setDescription(final String value) {
-		this.description = value;
+	public void setDescription(final String description) {
+		this.description = description;
 	}
 
 	private String description;
-
-	@Persistent
-	public List<JdoTopChapter> getChapters() {
-		return this.chapters;
-	}
-
-	public void setChapters(final List<JdoTopChapter> value) {
-		this.chapters = value;
-	}
-
-	private List<JdoTopChapter> chapters;
 
 }

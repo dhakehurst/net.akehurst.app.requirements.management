@@ -1,13 +1,21 @@
 package net.akehurst.app.requirements.management.computational.requirementsInterface;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.akehurst.application.framework.common.AbstractDataType;
 import net.akehurst.application.framework.common.annotations.declaration.DataType;
 
 @DataType
-public class Project {
+public class Project extends AbstractDataType implements IChapterOwner {
 
-	public Project(final String name, final String owner) {
-		this.name = name;
-		this.owner = owner;
+	public Project(final ProjectIdentity identity) {
+		super(identity);
+		this.chapter = new ArrayList<>();
+	}
+
+	public ProjectIdentity getIdentity() {
+		return (ProjectIdentity) super.getIdentityValues().get(0);
 	}
 
 	String name;
@@ -16,18 +24,32 @@ public class Project {
 		return this.name;
 	}
 
-	public void setName(final String name) {
-		this.name = name;
+	public void setName(final String value) {
+		this.name = value;
 	}
 
-	String owner;
+	String description;
 
-	public String getOwner() {
-		return this.owner;
+	public String getDescription() {
+		return this.description;
 	}
 
-	public void setOwner(final String owner) {
-		this.owner = owner;
+	public void setDescription(final String value) {
+		this.description = value;
+	}
+
+	List<TopChapter> chapter;
+
+	public List<TopChapter> getChapter() {
+		return this.chapter;
+	}
+
+	public Integer getRequirementsCount() {
+		int count = 0;
+		for (final TopChapter tc : this.getChapter()) {
+			count += tc.getRequirementsCount();
+		}
+		return count;
 	}
 
 }

@@ -1,0 +1,7 @@
+component RequirementManager {
+
+	port user
+	port auth
+	port requirements
+
+}

@@ -1,0 +1,26 @@
+use-case Start-Finish {
+
+	user : actor User
+	auth : action AuthenticationSystem
+	system : component RequirementsManager
+
+	interaction signIn {
+	
+		user -> system start
+		
+		system -> user notifyPleaseSignIn
+		user -> system requestSignIn
+		system -> auth requestAuthentication
+		auth -> system notifyAuthentication(SUCCESS)
+		system -> user notifyAuthentication(SUCCESS)
+		
+		system -> user notifyProjectList
+			
+	}
+
+
+	interaction signOut {
+
+	}
+
+}

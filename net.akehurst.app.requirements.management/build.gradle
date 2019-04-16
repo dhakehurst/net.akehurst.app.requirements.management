@@ -31,16 +31,18 @@ subprojects {
     
     ext {
     	af = 'net.akehurst.application.framework:net.akehurst.application.framework'
-		afVersion = '1.0.alpha.+'
+		afVersion = '+'
+		
+		jdoVersion = '5.1.0-m1'
+		javaxJdoVersion = '3.2.0-m6'
     }
     
     
     dependencies {
    		compile "${af}.common.bits:${afVersion}"
-    	compile "${af}.common.os:${afVersion}"
+    	compile "${af}.common.realisation:${afVersion}"
     	compile "${af}.technology.logging.log4j:${afVersion}"
 		compile "${af}.technology.filesystem:${afVersion}"
-		compile "${af}.technology.persistence.filesystem:${afVersion}"
 
     	testCompile 'junit:junit:+'
     }

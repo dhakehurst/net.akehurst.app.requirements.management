@@ -15,21 +15,23 @@
  */
 package net.akehurst.requirements.management.application.web;
 
+import net.akehurst.app.requirements.management.engineering.channel.dataStore.Requirements2DataStore;
 import net.akehurst.application.framework.common.annotations.instance.ComponentInstance;
 import net.akehurst.application.framework.common.annotations.instance.ServiceInstance;
-import net.akehurst.application.framework.engineering.authenticator2Gui.AuthenticatorToGui;
+import net.akehurst.application.framework.engineering.authenticator.AuthenticatorChannel;
 import net.akehurst.application.framework.realisation.AbstractApplication;
+import net.akehurst.application.framework.service.configuration.file.HJsonConfigurationService;
+import net.akehurst.application.framework.technology.authentication.any.AnyAuthenticator;
 import net.akehurst.application.framework.technology.filesystem.StandardFilesystem;
 import net.akehurst.application.framework.technology.gui.vertx.VertxWebsite;
 import net.akehurst.application.framework.technology.log4j.Log4JLogger;
-import net.akehurst.application.framework.technology.persistence.filesystem.HJsonFile;
 import net.akehurst.application.framework.technology.persistence.jdo.JdoPersistence;
 import net.akehurst.requirements.management.computational.requirementsManagement.RequirementsManager;
 import net.akehurst.requirements.management.engineering.user2Gui.UserToGui;
 
-public class RequirementsManagementApplication extends AbstractApplication {
+public class RequirementsManagerApplication extends AbstractApplication {
 
-	public RequirementsManagementApplication(final String id) {
+	public RequirementsManagerApplication(final String id) {
 		super(id);
 	}
 
@@ -40,7 +42,7 @@ public class RequirementsManagementApplication extends AbstractApplication {
 	StandardFilesystem fs;
 
 	@ServiceInstance
-	HJsonFile configuration;
+	HJsonConfigurationService configuration;
 
 	// --- Computational ---
 
@@ -52,7 +54,10 @@ public class RequirementsManagementApplication extends AbstractApplication {
 	UserToGui userToGui;
 
 	@ComponentInstance
-	AuthenticatorToGui authenticatorToGui;
+	AuthenticatorChannel authenticatorChannel;
+
+	@ComponentInstance
+	Requirements2DataStore req2Store;
 
 	// --- Technology ---
 	@ComponentInstance
@@ -61,12 +66,20 @@ public class RequirementsManagementApplication extends AbstractApplication {
 	@ComponentInstance
 	JdoPersistence dataStore;
 
+	@ComponentInstance
+	AnyAuthenticator authenticator;
+
 	@Override
 	public void afConnectParts() {
-		this.requirementsManager.portUserInterface().connect(this.userToGui.portUserInterface());
-		this.requirementsManager.portAuth().connect(this.authenticatorToGui.portAuth());
+		// computational <-> engineering
+		this.requirementsManager.portUser().connect(this.userToGui.portUserInterface());
+		this.requirementsManager.portAuth().connect(this.authenticatorChannel.portComputational());
+		this.requirementsManager.portData().connect(this.req2Store.portStore());
+
+		// engineering <-> technology
 		this.userToGui.portGui().connect(this.gui.portGui());
-		this.authenticatorToGui.portGui().connect(this.gui.portGui());
+		this.authenticatorChannel.portTechnology().connect(this.authenticator.portAuth());
+		this.req2Store.portPersist().connect(this.dataStore.portPersist());
 	}
 
 }
